@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="refresh" content="10">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: white;
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+        }
+        .carte {
+            background-color: #2a2a2a;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+    </style>
+    <title>Ma Box de Culture</title>
+</head>
+<body>
+    <div class = "carte" >
+    <h1>Température : {{ temperature | round(1) }}°C</h1>
+
+    {% if temperature > 27 %}
+        <p>Température élevée !</p>
+    {% else %}
+        <p>Température normale</p>
+    {% endif %}
+    </div>
+
+    <div class = "carte" >
+    <h2>Humidité : {{ humidite | round(1) }}%</h2>
+    </div>
+
+    <div class = "carte" >
+    <h3>Niveau réservoir : {{ reservoir | round(1)}}%</h3>
+    </div>
+
+    {% for pot in pots%}
+        <div class = "carte" >
+        <p>Etat {{ pot.nom }} : {{ pot.etat() }}</p>
+        <p>Humidité du sol : {{ pot.humidite | round(1) }}</p>
+        </div>
+    {% endfor %}
+</body>
+</html>
