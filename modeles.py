@@ -11,10 +11,6 @@ class Pot:
         else:
             return 'Sol ok'
 
-    def arroser(self, reservoir):
-        reservoir -= 0.5
-        self.humidite += 10
-        return reservoir
 
 class Reservoir:
     def __init__(self, capacite, niveau, niveau_min):

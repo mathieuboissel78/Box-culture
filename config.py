@@ -6,10 +6,9 @@ PIN_RELAIS_LED       = 22   # Le relais de la LED est sur la broche 22
 PIN_EXTRACTEUR_V1    = 27   # Extracteur vitesse 1 sur la broche 27
 PIN_EXTRACTEUR_V2    = 17   # Extracteur vitesse 2 sur la broche 17
 
-RESERVOIR_MIN = 0.5
+
 
 TEMPERATURE = 22.0
-HUMIDITE_SOL = 60
 HUMIDITE_AIR = 40
 LED = True
 TEMP_MAX = 27
