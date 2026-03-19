@@ -1,16 +1,17 @@
+import RPi.GPIO as GPIO
 import config
-from modeles import Pot
 
-def etat_pot(pot):
-    if pot.humidite < pot.seuil_sec:
-        return 'Arrosage nécessaire'
-    else:
-        return 'Sol ok'
+if not config.SIMULATION:
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(config.PIN_POMPE, GPIO.OUT)
 
-def arroser(pot, reservoir, ):
-    if reservoir >= config.RESERVOIR_MIN:
-    	reservoir -= 0.5
-    	pot.humidite += 10
+def pompe_on(pot, reservoir):
+    if config.SIMULATION:
+        pot.humidite += 10
+        reservoir.donner(0.1)
     else:
-    	print('Alerte : reservoir vide')
-    return pot, reservoir
+        GPIO.output(config.PIN_POMPE, GPIO.HIGH)
+
+def pompe_off():
+    if not config.SIMULATION:
+        GPIO.output(config.PIN_POMPE, GPIO.LOW)

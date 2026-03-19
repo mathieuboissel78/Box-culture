@@ -1,10 +1,17 @@
 from modeles import Pot, Reservoir
 # Ces nombres correspondent aux numéros de broches GPIO du Pi
 # C'est le schéma de câblage traduit en code
-PIN_DHT22            = 4    # Le capteur DHT22 est branché sur la broche 4
-PIN_RELAIS_LED       = 22   # Le relais de la LED est sur la broche 22
-PIN_EXTRACTEUR_V1    = 27   # Extracteur vitesse 1 sur la broche 27
-PIN_EXTRACTEUR_V2    = 17   # Extracteur vitesse 2 sur la broche 17
+PIN_DHT22              = 4
+PIN_EXTRACTEUR_V1      = 27
+PIN_EXTRACTEUR_V2      = 17
+PIN_RELAIS_LED         = 22
+PIN_RELAIS_BRUMISATEUR = 26   # Phase 3
+PIN_HC_SR04_TRIG       = 23
+PIN_HC_SR04_ECHO       = 24
+PIN_POMPE              = 25
+PIN_PWM_VENTILO_1      = 18   # Phase 3
+PIN_PWM_VENTILO_2      = 13   # Phase 3
+PIN_PWM_VENTILO_HUMID  = 19   # Phase 3
 
 
 
@@ -30,4 +37,6 @@ if SIMULATION:
     INTERVALLE_TEMPERATURE = 5    # secondes
     INTERVALLE_ARROSAGE    = 15   # secondes
 else:
-    INTERVALLE_ARROSAGE    = 1800  # 30 minutes — seul intervalle utile en production
+    INTERVALLE_ARROSAGE    = 600  # 10 minutes
+
+DUREE_ARROSAGE = 4
