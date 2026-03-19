@@ -19,7 +19,8 @@ def sauvegarder(pots, reservoir):
 		'reservoir' : {
 			'capacite' : reservoir.capacite,
 			'niveau' : reservoir.niveau,
-			'niveau_min' : reservoir.niveau_min
+			'niveau_min' : reservoir.niveau_min,
+			'hauteur' : reservoir.hauteur
 		}
 	}
 	with open(LOG, 'w') as f:
@@ -39,7 +40,8 @@ def charger():
 		capacite = donnees['reservoir']['capacite']
 		niveau = donnees['reservoir']['niveau']
 		niveau_min = donnees['reservoir']['niveau_min']
-		etat.reservoir = Reservoir(capacite, niveau, niveau_min)
+		hauteur = donnees['reservoir']['hauteur']
+		etat.reservoir = Reservoir(capacite, niveau, niveau_min, hauteur)
 	except (FileNotFoundError, json.JSONDecodeError) as e:
 		print('Erreur de fichier')
 		etat.pots, etat.reservoir = config.pots, config.reservoir

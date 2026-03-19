@@ -13,10 +13,11 @@ class Pot:
 
 
 class Reservoir:
-    def __init__(self, capacite, niveau, niveau_min):
+    def __init__(self, capacite, niveau, niveau_min, hauteur):
         self.capacite  = capacite
         self.niveau    = niveau
         self.niveau_min = niveau_min
+        self.hauteur = hauteur
 
     def est_vide(self):
         return self.niveau <= self.niveau_min

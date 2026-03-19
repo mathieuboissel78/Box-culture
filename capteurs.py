@@ -1,13 +1,69 @@
 from etat_simulation import etat
+import time
+import config
 
-def lire_temperature():
-    return etat.temperature
 
-def lire_humidite_air():
-    return etat.humidite_air
+TRIG = config.PIN_HC_SR04_TRIG
+ECHO = config.PIN_HC_SR04_ECHO
+
+if not config.SIMULATION:
+    import RPi.GPIO as GPIO
+    import board
+    import adafruit_dht
+    import adafruit_ads1x15
+    import busio
+    import adafruit_ads1x15.ads1115 as ADS
+    from adafruit_ads1x15.analog_in import AnalogIn
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(TRIG, GPIO.OUT)
+    GPIO.setup(ECHO, GPIO.IN)
+    dht = adafruit_dht.DHT22(board.D4)
+    i2c = busio.I2C(board.SCL, board.SDA)
+    ads = ADS.ADS1115(i2c)
+    canal = AnalogIn(ads, ADS.P0)
+
+def lire_dht():
+    if config.SIMULATION:
+        return etat.temperature, etat.humidite_air
+    for i in range(3):
+        try:
+            temperature = dht.temperature
+            humidite_air = dht.humidity
+            return temperature, humidite_air
+        except RuntimeError as e:
+            time.sleep(2)
+    print('DHT22 inaccessible')
+    return None, None
+    
+    
 
 def lire_humidite_sol(pot):
-    return pot.humidite
+    if config.SIMULATION:
+        return pot.humidite
+    else:
+        humidite_sol = (config.VAL_SEC - canal.value) / (config.VAL_SEC - config.VAL_HUM) * 100
+        if canal.value <= config.VAL_AIR:
+            print('Capteur hors sol')
+            return None
+        return min(100, max(0, humidite_sol))
 
 def lire_niveau(reservoir):
-    return reservoir.niveau
+    if config.SIMULATION:
+        return reservoir.niveau
+    else:
+        GPIO.output(TRIG, GPIO.HIGH)
+        time.sleep(0.00001)
+        GPIO.output(TRIG, GPIO.LOW)
+
+        while GPIO.input(ECHO) == 0:
+            debut = time.time()
+
+        while GPIO.input(ECHO) == 1:
+            fin = time.time()
+
+        duree = fin - debut
+        distance = 34300 * duree / 2
+        hauteur_eau = reservoir.hauteur - distance
+        niveau = hauteur_eau / reservoir.hauteur * reservoir.capacite
+        return niveau
+    

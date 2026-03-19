@@ -24,7 +24,10 @@ TEMP_CRIT = 30
 HUM_MAX = 80
 HUM_MIN = 55
 HUM_CIBLE = 65
-reservoir = Reservoir(20, 10, 0.5)
+VAL_AIR = 17514
+VAL_SEC = 12216
+VAL_HUM = 5680
+reservoir = Reservoir(20, 10, 0.5, 30)
 
 pots = [
 Pot('Pot1', 8, 30 )
