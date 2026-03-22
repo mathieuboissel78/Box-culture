@@ -20,7 +20,7 @@ if not config.SIMULATION:
     dht = adafruit_dht.DHT22(board.D4)
     i2c = busio.I2C(board.SCL, board.SDA)
     ads = ADS.ADS1115(i2c)
-    canal = AnalogIn(ads, ADS.P0)
+    canal = AnalogIn(ads, 0)
 
 def lire_dht():
     if config.SIMULATION:
@@ -42,7 +42,7 @@ def lire_humidite_sol(pot):
         return pot.humidite
     else:
         humidite_sol = (config.VAL_SEC - canal.value) / (config.VAL_SEC - config.VAL_HUM) * 100
-        if canal.value <= config.VAL_AIR:
+        if canal.value >= config.VAL_AIR:
             print('Capteur hors sol')
             return None
         return min(100, max(0, humidite_sol))

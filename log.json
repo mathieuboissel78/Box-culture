@@ -1,1 +1,1 @@
-{"pots": [{"nom": "Pot1", "humidite": 27.793918681751396, "seuil_sec": 30}], "reservoir": {"capacite": 20, "niveau": 9.700000000000001, "niveau_min": 0.5}}
+{"pots": [{"nom": "Pot1", "humidite": 0, "seuil_sec": 30}], "reservoir": {"capacite": 20, "niveau": 10.737326939900715, "niveau_min": 0.5, "hauteur": 30}}

@@ -11,13 +11,14 @@ from routines.surveillance import routine_surveillance
 
 
 charger()
+routine_surveillance()
 
 if config.SIMULATION:
 	schedule.every(config.INTERVALLE_SECHAGE).seconds.do(simulation.assecher)
 	schedule.every(config.INTERVALLE_TEMPERATURE).seconds.do(simulation.evoluer_temperature)
 	schedule.every(2).minutes.do(simulation.alterner_led)
 
-schedule.every(10).minutes.do(routine_surveillance)
+schedule.every(config.INTERVALLE_SURVEILLANCE).seconds.do(routine_surveillance)
 schedule.every(10).minutes.do(routine_climat)
 schedule.every(config.INTERVALLE_ARROSAGE).seconds.do(routine_arrosage)
 

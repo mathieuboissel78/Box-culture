@@ -33,13 +33,15 @@ pots = [
 Pot('Pot1', 8, 30 )
 ]
 
-SIMULATION = True
+SIMULATION = False
 
 if SIMULATION:
     INTERVALLE_SECHAGE     = 10   # secondes
     INTERVALLE_TEMPERATURE = 5    # secondes
     INTERVALLE_ARROSAGE    = 15   # secondes
+    INTERVALLE_SURVEILLANCE = 30  # secondes
 else:
     INTERVALLE_ARROSAGE    = 600  # 10 minutes
+    INTERVALLE_SURVEILLANCE = 300 # 5 minutes
 
 DUREE_ARROSAGE = 4
