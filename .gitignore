@@ -1,3 +1,4 @@
 log.json
 venv/
 __pycache__/
+token.txt

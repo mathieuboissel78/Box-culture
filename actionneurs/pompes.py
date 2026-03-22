@@ -3,6 +3,7 @@ import config
 
 if not config.SIMULATION:
     GPIO.setmode(GPIO.BCM)
+    GPIO.setwarnings(False)
     GPIO.setup(config.PIN_POMPE, GPIO.OUT)
 
 def pompe_on(pot, reservoir):
