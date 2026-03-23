@@ -14,7 +14,7 @@ def routine_climat():
 	elif etat.temperature >= config.TEMP_MAX or etat.humidite_air > config.HUM_MAX:
 		print('Extracteur V2 activé')
 		etat.extracteur_v2 = True
-		relais.extrateur_v1_off()
+		relais.extracteur_v1_off()
 		relais.extracteur_v2_on()
 	else:
 		print('Extracteur V1 activé')
@@ -28,8 +28,8 @@ def routine_climat():
 	elif etat.humidite_air > config.HUM_CIBLE:
 		print('Brumisateur OFF')
 		etat.brumisateur = False
-		relais.brumisateur_off
+		relais.brumisateur_off()
 	if etat.brumisateur:
+		relais.extracteur_v2_off()
+		relais.extracteur_v1_on()
 		etat.extracteur_v2 = False
-		relais.extracteur_v2_off
-		relais.extracteur_v1_on
