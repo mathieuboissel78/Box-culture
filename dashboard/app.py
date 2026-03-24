@@ -1,5 +1,6 @@
 from etat_simulation import etat
 from flask import Flask, render_template
+import config
 
 app = Flask(__name__, template_folder='templates')
 
@@ -9,7 +10,12 @@ def accueil():
                            temperature=etat.temperature,
                            humidite=etat.humidite_air,
                            pots=etat.pots,
-                           reservoir=etat.reservoir.pourcentage()
+                           reservoir=etat.reservoir.pourcentage(),
+                           temp_max = config.TEMP_MAX,
+                           temp_min = config.TEMP_MIN,
+                           temp_crit = config.TEMP_CRIT,
+                           hum_max = config.HUM_MAX,
+                           hum_min = config.HUM_MIN
                            )
 
 

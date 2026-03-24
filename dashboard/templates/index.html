@@ -19,26 +19,47 @@
             padding: 15px;
             margin: 10px 0;
         }
+        .bas {
+            color : rgb(0, 140, 255);
+        }
+        .normal {
+            color : #4caf50;
+        }
+        .attention {
+            color : #ff9800;
+        }
+        .critique {
+            color : #f44336;
+        }
     </style>
     <title>Ma Box de Culture</title>
 </head>
 <body>
     <div class = "carte" >
-    <h1>Température : {{ temperature | round(1) }}°C</h1>
+    <h1>Température : <span class = "{% if temperature >= temp_crit %}critique
+                                     {% elif temperature >= temp_max %}attention
+                                     {% elif temperature >= temp_min %}normal
+                                     {% else %}bas
+                                     {% endif %}">
+        {{ temperature | round(1) }}°C</span></h1>
 
-    {% if temperature > 27 %}
-        <p>Température élevée !</p>
+    {% if temperature >= temp_crit %}
+        <p class = "critique">Température critique !</p>
+    {% elif temperature >= temp_max %}
+        <p class = "attention">Température élevée !</p>
+    {% elif temperature >= temp_min %}
+        <p class = "normal">Température normale</p>
     {% else %}
-        <p>Température normale</p>
+        <p class = "bas">Température basse</p>
     {% endif %}
     </div>
 
     <div class = "carte" >
-    <h2>Humidité : {{ humidite | round(1) }}%</h2>
+    <h1>Humidité : {{ humidite | round(1) }}%</h1>
     </div>
 
     <div class = "carte" >
-    <h3>Niveau réservoir : {{ reservoir | round(1)}}%</h3>
+    <h1>Niveau réservoir : {{ reservoir | round(1)}}%</h1>
     </div>
 
     {% for pot in pots%}
