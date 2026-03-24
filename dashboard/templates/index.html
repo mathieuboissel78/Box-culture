@@ -44,13 +44,13 @@
         {{ temperature | round(1) }}°C</span></h1>
 
     {% if temperature >= temp_crit %}
-        <p class = "critique">Température critique !</p>
+        <p>Température critique !</p>
     {% elif temperature >= temp_max %}
-        <p class = "attention">Température élevée !</p>
+        <p>Température élevée !</p>
     {% elif temperature >= temp_min %}
-        <p class = "normal">Température normale</p>
+        <p>Température normale</p>
     {% else %}
-        <p class = "bas">Température basse</p>
+        <p>Température basse</p>
     {% endif %}
     </div>
 
@@ -64,8 +64,8 @@
 
     {% for pot in pots%}
         <div class = "carte" >
-        <p>Etat {{ pot.nom }} : {{ pot.etat() }}</p>
-        <p>Humidité du sol : {{ pot.humidite | round(1) }}</p>
+        <h2>Etat {{ pot.nom }} : {{ pot.etat() }}</h2>
+        <h2>Humidité du sol : {{ pot.humidite | round(1) }}</h2>
         </div>
     {% endfor %}
 </body>
