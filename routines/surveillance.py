@@ -1,5 +1,6 @@
 from etat_simulation import etat
 import capteurs
+from datetime import datetime
 
 def routine_surveillance():
 	temperature, humidite_air = capteurs.lire_dht()
@@ -12,3 +13,4 @@ def routine_surveillance():
 		if humidite_sol is not None:
 			pot.humidite = humidite_sol
 	etat.reservoir.niveau = capteurs.lire_niveau(etat.reservoir)
+	etat.derniere_maj = datetime.now().strftime("%H:%M:%S")

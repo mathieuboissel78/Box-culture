@@ -31,10 +31,35 @@
         .critique {
             color : #f44336;
         }
+        .barre-fond {
+            background-color : #444;
+            border-radius : 5px;
+            height : 20px;
+        }
+        .barre-remplissage {
+            background-color : #4caf50;
+            border-radius : 5px;
+            height : 20px;
+            width : 0%;
+        }
+        .barre-verte {
+            background-color : #4caf50;
+        }
+        .barre-orange {
+            background-color : #ff9800;
+        }
+        .barre-rouge {
+            background-color : #f44336;
+        }
     </style>
     <title>Ma Box de Culture</title>
 </head>
 <body>
+    <div style = "text-align : right; 
+                  font-size : 0.8em;
+                  color : #888;">
+        Dernière mise à jour : {{ heure }}
+    </div>
     <div class = "carte" >
     <h1>Température : <span class = "{% if temperature >= temp_crit %}critique
                                      {% elif temperature >= temp_max %}attention
@@ -55,17 +80,33 @@
     </div>
 
     <div class = "carte" >
-    <h1>Humidité : {{ humidite | round(1) }}%</h1>
+    <h1>Humidité : <span class = "{% if humidite >= hum_max %}critique
+                                  {% elif humidite >= hum_min %}normal
+                                  {% else %}bas
+                                  {% endif%}">
+        {{ humidite | round(1) }}%</span></h1>
     </div>
 
     <div class = "carte" >
     <h1>Niveau réservoir : {{ reservoir | round(1)}}%</h1>
+        <div class = "barre-fond">
+            <div class = "barre-remplissage
+                            {% if reservoir > 25 %}barre-verte
+                            {% elif reservoir > 15 %}barre-orange
+                            {% else %}barre-rouge
+                            {% endif %}" 
+                 style = "width : {{ reservoir }}%">
+            </div>
+        </div>
     </div>
 
     {% for pot in pots%}
         <div class = "carte" >
         <h2>Etat {{ pot.nom }} : {{ pot.etat() }}</h2>
-        <h2>Humidité du sol : {{ pot.humidite | round(1) }}</h2>
+        <h2>Humidité du sol : <span class = "{% if pot.humidite >= pot.seuil_sec %}normal
+                                             {% else %}critique
+                                             {% endif %}">
+            {{ pot.humidite | round(1) }}</span></h2>
         </div>
     {% endfor %}
 </body>

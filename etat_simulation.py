@@ -10,6 +10,7 @@ class EtatSimulation:
         self.reservoir = config.reservoir
         self.brumisateur = False
         self.extracteur_v2 = False
+        self.derniere_maj = None
 
 etat = EtatSimulation()
 
