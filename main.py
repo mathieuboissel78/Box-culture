@@ -14,6 +14,7 @@ from routines.led import routine_led
 charger()
 routine_surveillance()
 routine_led()
+routine_climat()
 
 if config.SIMULATION:
 	schedule.every(config.INTERVALLE_SECHAGE).seconds.do(simulation.assecher)
