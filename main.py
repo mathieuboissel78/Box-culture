@@ -8,10 +8,12 @@ from sauvegarde import charger
 from routines.climat import routine_climat
 from routines.arrosage import routine_arrosage
 from routines.surveillance import routine_surveillance
+from routines.led import routine_led
 
 
 charger()
 routine_surveillance()
+routine_led()
 
 if config.SIMULATION:
 	schedule.every(config.INTERVALLE_SECHAGE).seconds.do(simulation.assecher)
@@ -21,7 +23,7 @@ if config.SIMULATION:
 schedule.every(config.INTERVALLE_SURVEILLANCE).seconds.do(routine_surveillance)
 schedule.every(10).minutes.do(routine_climat)
 schedule.every(config.INTERVALLE_ARROSAGE).seconds.do(routine_arrosage)
-
+schedule.every(1).minutes.do(routine_led)
 
 def lancer_schedule():
 	while True:

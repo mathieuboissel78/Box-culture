@@ -11,6 +11,7 @@ class EtatSimulation:
         self.brumisateur = False
         self.extracteur_v2 = False
         self.derniere_maj = None
+        self.jour = False
 
 etat = EtatSimulation()
 
