@@ -17,7 +17,7 @@ def accueil():
                            temperature = etat.temperature,
                            humidite = etat.humidite_air,
                            pots = etat.pots,
-                           reservoir = etat.reservoir.pourcentage(),
+                           reservoir = etat.reservoir.pourcentage,
                            temp_max = temp_max,
                            temp_min = temp_min,
                            temp_crit = config.TEMP_CRIT,

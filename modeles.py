@@ -5,6 +5,13 @@ class Pot:
         self.humidite = humidite
         self.seuil_sec = seuil_sec
 
+    def __str__(self):
+        return f"{self.nom} humidité : {self.humidite}% ( seuil : {self.seuil_sec})"
+    
+    @property
+    def est_sec(self):
+        return self.humidite < self.seuil_sec
+
     def etat(self):
         if self.humidite < self.seuil_sec:
             return 'Arrosage nécessaire'
@@ -26,6 +33,7 @@ class Reservoir:
         if not self.est_vide() and self.niveau - volume > self.niveau_min:
             self.niveau -= volume
         return self.niveau
-
+    
+    @property
     def pourcentage(self):
         return self.niveau / self.capacite * 100

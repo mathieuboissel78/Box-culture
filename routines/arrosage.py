@@ -7,7 +7,7 @@ import config
 def routine_arrosage():
 
 	for pot in etat.pots:
-		if pot.humidite < pot.seuil_sec and not etat.reservoir.est_vide():
+		if pot.est_sec and not etat.reservoir.est_vide():
 			pompe_on(pot, etat.reservoir)
 			time.sleep(config.DUREE_ARROSAGE)
 			pompe_off()
