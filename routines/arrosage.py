@@ -3,6 +3,7 @@ from sauvegarde import sauvegarder
 from actionneurs.pompes import pompe_on, pompe_off
 import time
 import config
+from historique import enregistrer_arrosage
 
 def routine_arrosage():
 
@@ -13,4 +14,4 @@ def routine_arrosage():
 			pompe_off()
 			print(f"État : {pot.etat()} | Humidité : {pot.humidite:.1f} | Réservoir : {etat.reservoir.niveau:.1f}")
 			sauvegarder(etat.pots, etat.reservoir)
-			
+			enregistrer_arrosage()

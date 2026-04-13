@@ -12,6 +12,13 @@ class EtatSimulation:
         self.extracteur_v2 = False
         self.derniere_maj = None
         self.jour = False
+        self.derniere_mesure_id = None
+        if config.CROISSANCE:
+            self.phase = "croissance"
+        elif config.FLORAISON:
+            self.phase = "floraison"
+        elif config.SECHAGE:
+            self.phase = "sechage"
 
 etat = EtatSimulation()
 
