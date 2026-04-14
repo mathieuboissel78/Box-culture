@@ -1,6 +1,7 @@
 from etat_simulation import etat
 import config
 import actionneurs.relais as relais
+import alertes
 
 
 
@@ -44,3 +45,5 @@ def routine_climat():
 		relais.extracteur_v2_off()
 		relais.extracteur_v1_on()
 		etat.extracteur_v2 = False
+
+	alertes.alerte_temperature()

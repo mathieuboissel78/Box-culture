@@ -48,7 +48,7 @@ def lire_humidite_sol(pot):
             humidite_sol = (config.VAL_SEC - canal.value) / (config.VAL_SEC - config.VAL_HUM) * 100
             if canal.value >= config.VAL_AIR:
                 print('Capteur hors sol')
-                return None
+                return 'hors_sol'
             return min(100, max(0, humidite_sol))
         except (NameError, ValueError, IOError) as e:
             print(f'Erreur capteur capacitif : {e}')

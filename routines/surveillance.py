@@ -20,10 +20,11 @@ def routine_surveillance():
 	
 	for pot in etat.pots:
 		humidite_sol = capteurs.lire_humidite_sol(pot)
-		if humidite_sol is not None:
+		if humidite_sol is not None and humidite_sol != 'hors_sol':
 			pot.humidite = humidite_sol
 		humidites_sol.append(humidite_sol)
 
 	etat.derniere_maj = datetime.now().strftime("%H:%M:%S")
 	alertes.alerte_capteur(temperature, humidite_air, humidites_sol, niveau)
+	alertes.alerte_reservoir()
 	historique.enregistrer_mesure()

@@ -13,6 +13,7 @@ class EtatSimulation:
         self.derniere_maj = None
         self.jour = False
         self.derniere_mesure_id = None
+        self.derniere_alerte = {}
         if config.CROISSANCE:
             self.phase = "croissance"
         elif config.FLORAISON:
