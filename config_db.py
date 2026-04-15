@@ -104,3 +104,36 @@ def peupler_config_db(nom, phase, led_active, h_lever, h_coucher, temp_max_jour,
     
     conn.commit()
     conn.close()
+
+def charger_phase(plante_id, phase):
+    
+    conn = sqlite3.connect('config.db')
+
+    cursor = conn.cursor()
+
+    cursor.execute('''
+        SELECT * FROM phases_plantes 
+        WHERE plantes_id = ? AND phase = ?''',
+        (plante_id, phase)
+    )
+
+    result = cursor.fetchone()
+
+    parametres = {
+        'led_active' : result[2],
+        'h_lever' : result[3],
+        'h_coucher' : result[4],
+        'temp_max_jour' : result[5],
+        'temp_min_jour' : result[6],
+        'temp_max_nuit' : result[7],
+        'temp_min_nuit' : result[8],
+        'hum_max' : result[9],
+        'hum_min' : result[10],
+        'hum_cible' : result[11],
+        'temp_crit' : result[12],
+        'duree_arrosage' : result[13]
+    }
+
+    conn.close() 
+
+    return parametres
