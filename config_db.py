@@ -40,9 +40,9 @@ def initialiser_config_db():
     conn.close()
 
 
-def peupler_config_db(nom, phase, led_active, h_lever, h_coucher, temp_max_jour, temp_min_jour,
-                      temp_max_nuit, temp_min_nuit, hum_max, hum_min, hum_cible,
-                      temp_crit, duree_arrosage):
+def peupler_config_db(nom, phase, led_active, h_lever, h_coucher, temp_max_jour, 
+                      temp_min_jour, temp_max_nuit, temp_min_nuit, hum_max, hum_min, 
+                      hum_cible, temp_crit, duree_arrosage):
 
     conn = sqlite3.connect('config.db')
 
