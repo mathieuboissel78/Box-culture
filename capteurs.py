@@ -63,11 +63,19 @@ def lire_niveau(reservoir):
             time.sleep(0.00001)
             GPIO.output(TRIG, GPIO.LOW)
 
+            timeout = time.time() + 0.1
+
             while GPIO.input(ECHO) == 0:
                 debut = time.time()
+                if time.time() > timeout:
+                    return None
+                
+            timeout = time.time() + 0.1
 
             while GPIO.input(ECHO) == 1:
                 fin = time.time()
+                if time.time() > timeout:
+                    return None
 
             duree = fin - debut
             distance = 34300 * duree / 2
