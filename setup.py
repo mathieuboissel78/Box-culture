@@ -1,0 +1,105 @@
+from config_db import initialiser_config_db, peupler_config_db
+
+initialiser_config_db()
+
+peupler_config_db(
+    'Tomate',
+    'croissance',
+    1,
+    '06:00',
+    '00:00',
+    27.0,
+    21.0,
+    18.0,
+    17.0,
+    85,
+    60,
+    70,
+    30.0,
+    3
+)
+
+peupler_config_db(
+    'Tomate',
+    'floraison',
+    1,
+    '06:00',
+    '00:00',
+    22.0,
+    18.0,
+    20.0,
+    16.0,
+    85,
+    60,
+    70,
+    30.0,
+    3
+)
+
+peupler_config_db(
+    'Piment',
+    'croissance',
+    1,
+    '06:00',
+    '22:00',
+    26.0,
+    22.0,
+    20.0,
+    15.0,
+    70,
+    50,
+    60,
+    29.0,
+    3
+)
+
+peupler_config_db(
+    'Cannabis',
+    'croissance',
+    1,
+    '06:00',
+    '00:00',
+    28.0,
+    22.0,
+    24.0,
+    20.0,
+    70,
+    50,
+    60,
+    30.0,
+    4
+)
+
+peupler_config_db(
+    'Cannabis',
+    'floraison',
+    1,
+    '10:00',
+    '22:00',
+    26.0,
+    20.0,
+    22.0,
+    18.0,
+    50,
+    40,
+    45,
+    28.0,
+    4
+)
+
+peupler_config_db(
+    'Cannabis',
+    'séchage',
+    0,
+    None,
+    None,
+    20.0,
+    18.0,
+    None,
+    None,
+    55,
+    45,
+    50,
+    24.0,
+    None
+)

@@ -9,9 +9,11 @@ from routines.climat import routine_climat
 from routines.arrosage import routine_arrosage
 from routines.surveillance import routine_surveillance
 from routines.led import routine_led
-from historique import initialiser_db
+from historique import initialiser_historique_db
+from config_db import initialiser_config_db
 
-initialiser_db()
+initialiser_historique_db()
+initialiser_config_db()
 charger()
 routine_surveillance()
 routine_led()
