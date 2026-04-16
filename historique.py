@@ -3,7 +3,7 @@ from datetime import datetime
 from etat_simulation import etat
 import config
 
-def initialiser_db():
+def initialiser_historique_db():
 
     conn = sqlite3.connect('historique.db')
 

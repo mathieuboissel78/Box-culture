@@ -3,3 +3,6 @@ venv/
 __pycache__/
 token.txt
 historique.db
+exercice_sql.py 
+exercice_Flask_API.py
+config.db

@@ -1,9 +1,10 @@
 class Pot:
 
-    def __init__(self, nom, humidite, seuil_sec):
+    def __init__(self, nom, humidite, seuil_sec, plante_id = None):
         self.nom = nom
         self.humidite = humidite
         self.seuil_sec = seuil_sec
+        self.plante_id = plante_id
 
     def __str__(self):
         return f"{self.nom} humidité : {self.humidite}% ( seuil : {self.seuil_sec})"
