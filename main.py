@@ -11,6 +11,7 @@ from routines.surveillance import routine_surveillance
 from routines.led import routine_led
 from historique import initialiser_historique_db
 from config_db import initialiser_config_db
+import sdnotify
 
 initialiser_historique_db()
 initialiser_config_db()
@@ -29,9 +30,12 @@ schedule.every(10).minutes.do(routine_climat)
 schedule.every(config.INTERVALLE_ARROSAGE).seconds.do(routine_arrosage)
 schedule.every(1).minutes.do(routine_led)
 
+n = sdnotify.SystemdNotifier()
+
 def lancer_schedule():
 	while True:
 		schedule.run_pending()
+		n.notify("WATCHDOG=1")
 		time.sleep(1)
 
 thread = threading.Thread(target=lancer_schedule)

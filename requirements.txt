@@ -26,6 +26,7 @@ requests==2.33.1
 RPi.GPIO==0.7.1
 rpi_ws281x==5.0.0
 schedule==1.2.2
+sdnotify==0.3.2
 sysv_ipc==1.2.0
 typing_extensions==4.15.0
 urllib3==2.6.3
