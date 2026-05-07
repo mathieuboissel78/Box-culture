@@ -14,7 +14,9 @@ def routine_surveillance():
 		etat.humidite_air = humidite_air
 
 	niveau = capteurs.lire_niveau(etat.reservoir)
-	etat.reservoir.niveau = niveau
+
+	if niveau is not None:
+		etat.reservoir.niveau = niveau
 
 	humidites_sol = []
 	

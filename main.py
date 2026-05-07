@@ -30,8 +30,13 @@ schedule.every(config.INTERVALLE_ARROSAGE).seconds.do(routine_arrosage)
 schedule.every(1).minutes.do(routine_led)
 
 def lancer_schedule():
+	
 	while True:
-		schedule.run_pending()
+		try:
+			schedule.run_pending()
+			
+		except Exception as e:
+			print(f"[ERREUR THREAD] {e}", flush=True)
 		time.sleep(1)
 
 thread = threading.Thread(target=lancer_schedule)
