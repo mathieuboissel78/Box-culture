@@ -14,5 +14,7 @@ def routine_led():
 
     if config.LED_ACTIVE and etat.jour:
         led_on()
+        print(f"[LED] {datetime.now().strftime('%H:%M:%S')}, {etat.phase}, lever : {config.H_LEVER}, coucher : {config.H_COUCHER}, led active : {config.LED_ACTIVE}, LED ON", flush=True)
     else: 
         led_off()
+        print(f"[LED] {datetime.now().strftime('%H:%M:%S')}, {etat.phase}, lever : {config.H_LEVER}, coucher : {config.H_COUCHER}, led active : {config.LED_ACTIVE},LED OFF", flush=True)
