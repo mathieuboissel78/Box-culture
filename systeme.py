@@ -13,7 +13,7 @@ class EtatBox:
     extracteur_v2 : bool = False
     phase : str = None
 
-etat = etatBox()
+etat = EtatBox()
 
 @dataclass
 class Seuils:
@@ -28,10 +28,12 @@ class Seuils:
     hum_min : int = 50
     hum_cible : int = 65
 
+seuils = Seuils()
+
 @dataclass
 class Metadonnees:
     derniere_maj : str = None
     derniere_mesure_id : int = None
-    derniere_alerte : dict = {}
+    derniere_alerte : dict = field(default_factory=dict)
 
-    
+meta = Metadonnees()
