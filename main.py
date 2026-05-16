@@ -4,6 +4,8 @@ import time
 import config
 from dashboard.app import app
 import simulation
+import signal
+import sdnotify
 from sauvegarde import charger
 from routines.climat import routine_climat
 from routines.arrosage import routine_arrosage
@@ -11,7 +13,11 @@ from routines.surveillance import routine_surveillance
 from routines.led import routine_led
 from historique import initialiser_historique_db
 from config_db import initialiser_config_db
-import sdnotify
+from actionneurs.pompes import pompe_off
+from actionneurs.relais import led_off, extracteur_v1_off, extracteur_v2_off, brumisateur_off
+
+if not config.SIMULATION:
+	import RPi.GPIO as GPIO
 
 initialiser_historique_db()
 initialiser_config_db()
@@ -30,16 +36,45 @@ schedule.every(10).minutes.do(routine_climat)
 schedule.every(config.INTERVALLE_ARROSAGE).seconds.do(routine_arrosage)
 schedule.every(1).minutes.do(routine_led)
 
+
+def eteindre_tout():
+	pompe_off()
+	brumisateur_off()
+	led_off()
+	extracteur_v2_off()
+	extracteur_v1_off()
+	if not config.SIMULATION:
+		GPIO.cleanup()
+
 n = sdnotify.SystemdNotifier()
 
 def lancer_schedule():
 	while True:
-		schedule.run_pending()
+		try:
+			schedule.run_pending()
+		
+		except Exception as e:
+			print(f"[ERREUR THREAD] {e}", flush=True)
+		
 		n.notify("WATCHDOG=1")
 		time.sleep(1)
+
+def handler_sigterm(signum, frame):
+	raise KeyboardInterrupt
+
+signal.signal(signal.SIGTERM, handler_sigterm)
 
 thread = threading.Thread(target=lancer_schedule)
 thread.daemon = True
 thread.start()
 
-app.run(host='0.0.0.0', port=5000)
+n.notify("READY=1")
+
+try:
+	app.run(host='0.0.0.0', port=5000)
+
+except KeyboardInterrupt:
+	print("Arrêt en cours")
+
+finally:
+	eteindre_tout()
