@@ -3,4 +3,5 @@ venv/
 __pycache__/
 token.txt
 historique.db
+config.db
 setup.py
