@@ -24,4 +24,14 @@ class Seuils:
     temp_min_jour : float = 22.0
     temp_max_nuit : float = 24.0
     temp_min_nuit : float = 20.0
+    hum_max : int = 70
+    hum_min : int = 50
+    hum_cible : int = 65
+
+@dataclass
+class Metadonnees:
+    derniere_maj : str = None
+    derniere_mesure_id : int = None
+    derniere_alerte : dict = {}
+
     
