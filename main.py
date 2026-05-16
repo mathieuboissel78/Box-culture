@@ -5,6 +5,7 @@ import config
 from dashboard.app import app
 import simulation
 import signal
+import sdnotify
 from sauvegarde import charger
 from routines.climat import routine_climat
 from routines.arrosage import routine_arrosage
@@ -44,6 +45,8 @@ def eteindre_tout():
 	if not config.SIMULATION:
 		GPIO.cleanup()
 
+n = sdnotify.SystemdNotifier()
+
 def lancer_schedule():
 	while True:
 		try:
@@ -51,7 +54,8 @@ def lancer_schedule():
 		
 		except Exception as e:
 			print(f"[ERREUR THREAD] {e}", flush=True)
-
+		
+		n.notify("WATCHDOG=1")
 		time.sleep(1)
 
 def handler_sigterm(signum, frame):
@@ -62,6 +66,8 @@ signal.signal(signal.SIGTERM, handler_sigterm)
 thread = threading.Thread(target=lancer_schedule)
 thread.daemon = True
 thread.start()
+
+n.notify("READY=1")
 
 try:
 	app.run(host='0.0.0.0', port=5000)
