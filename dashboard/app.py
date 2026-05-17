@@ -1,3 +1,4 @@
+from systeme import meta
 from etat_simulation import etat
 from flask import Flask, render_template
 import config
@@ -13,7 +14,7 @@ def accueil():
         temp_max = config.TEMP_MAX_NUIT
         temp_min = config.TEMP_MIN_NUIT
     return render_template('index.html',
-                           heure = etat.derniere_maj,
+                           heure = meta.derniere_maj,
                            temperature = etat.temperature,
                            humidite = etat.humidite_air,
                            pots = etat.pots,
@@ -24,5 +25,3 @@ def accueil():
                            hum_max = config.HUM_MAX,
                            hum_min = config.HUM_MIN
                            )
-
-
