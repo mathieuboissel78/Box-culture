@@ -2,6 +2,6 @@ log.json
 venv/
 __pycache__/
 token.txt
-historique.db
-exercice_sql.py 
-config.dbdiag_gpio
+historique.db 
+config.db
+setup.py

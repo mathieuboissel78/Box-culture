@@ -71,7 +71,7 @@ VAL_AIR = 17514
 VAL_SEC = 15254
 VAL_HUM = 5680
 
-reservoir = Reservoir(20, 10, 0.5, 30)
+reservoir = Reservoir(30, 20, 5, 31.5)
 
 pots = [
 Pot('Pot1', 8, 30 )
