@@ -1,4 +1,5 @@
 import sqlite3
+from systeme import meta
 from datetime import datetime
 from etat_simulation import etat
 import config
@@ -50,7 +51,7 @@ def enregistrer_mesure():
     ''', (datetime.now().strftime("%d/%m/%Y, %H:%M:%S"), etat.temperature, etat.humidite_air, etat.pots[0].humidite, etat.reservoir.niveau, etat.phase)
     )
 
-    etat.derniere_mesure_id = cursor.lastrowid
+    meta.derniere_mesure_id = cursor.lastrowid
 
     conn.commit()
     conn.close()
@@ -64,7 +65,7 @@ def enregistrer_arrosage():
     cursor.execute('''
                    INSERT INTO arrosages (timestamp, pot_nom, duree, niveau_reservoir_apres, mesure_id)
                    VALUES (?,?,?,?,?)
-                   ''', (datetime.now().strftime("%d/%m/%Y, %H:%M:%S"), etat.pots[0].nom, config.DUREE_ARROSAGE, etat.reservoir.niveau, etat.derniere_mesure_id)
+                   ''', (datetime.now().strftime("%d/%m/%Y, %H:%M:%S"), etat.pots[0].nom, config.DUREE_ARROSAGE, etat.reservoir.niveau, meta.derniere_mesure_id)
                    )
     
     conn.commit()
