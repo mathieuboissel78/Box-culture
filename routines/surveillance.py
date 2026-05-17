@@ -1,4 +1,5 @@
 from etat_simulation import etat
+from systeme import meta
 import capteurs
 from datetime import datetime
 import historique
@@ -26,7 +27,7 @@ def routine_surveillance():
 			pot.humidite = humidite_sol
 		humidites_sol.append(humidite_sol)
 
-	etat.derniere_maj = datetime.now().strftime("%H:%M:%S")
+	meta.derniere_maj = datetime.now().strftime("%H:%M:%S")
 	alertes.alerte_capteur(temperature, humidite_air, humidites_sol, niveau)
 	alertes.alerte_reservoir()
 	historique.enregistrer_mesure()
