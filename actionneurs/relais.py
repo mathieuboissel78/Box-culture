@@ -8,11 +8,11 @@ if not config.SIMULATION:
     GPIO.setup(config.PIN_RELAIS_LED, GPIO.OUT)
     GPIO.setup(config.PIN_EXTRACTEUR_V1, GPIO.OUT)
     GPIO.setup(config.PIN_EXTRACTEUR_V2, GPIO.OUT)
-    GPIO.setup(config.PIN_RELAIS_BRUMISATEUR, GPIO.OUT)
+    # GPIO.setup(config.PIN_RELAIS_BRUMISATEUR, GPIO.OUT)
     GPIO.output(config.PIN_RELAIS_LED, GPIO.HIGH)          # Eteint les relais par défaut au démarage
     GPIO.output(config.PIN_EXTRACTEUR_V1, GPIO.HIGH)
     GPIO.output(config.PIN_EXTRACTEUR_V2, GPIO.HIGH)
-    GPIO.output(config.PIN_RELAIS_BRUMISATEUR, GPIO.HIGH)
+    # GPIO.output(config.PIN_RELAIS_BRUMISATEUR, GPIO.HIGH)
 
 def extracteur_v1_on():
     if not config.SIMULATION:
@@ -42,6 +42,7 @@ def led_off():
     if not config.SIMULATION:
         GPIO.output(config.PIN_RELAIS_LED, GPIO.HIGH)
 
+"""
 def brumisateur_on():
     if not config.SIMULATION:
         GPIO.output(config.PIN_RELAIS_BRUMISATEUR, GPIO.LOW)
@@ -49,3 +50,4 @@ def brumisateur_on():
 def brumisateur_off():
     if not config.SIMULATION:
         GPIO.output(config.PIN_RELAIS_BRUMISATEUR, GPIO.HIGH)
+"""
