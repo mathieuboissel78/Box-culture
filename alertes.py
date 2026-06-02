@@ -17,7 +17,7 @@ def envoyer_alerte(message, type_alerte):
             requests.post(url, data = {'chat_id' : CHAT_ID, 'text' : message}, timeout = 10)
             etat.derniere_alerte[type_alerte] = datetime.now()
         except requests.exceptions.RequestException as e:
-            print(f"[ALERTE NON ENVOYEE] : {e}")
+            print(f"[ALERTE NON ENVOYEE] : {e}", flush = True)
 
 
 def alerte_temperature():
