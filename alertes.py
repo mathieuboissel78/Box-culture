@@ -13,8 +13,11 @@ def envoyer_alerte(message, type_alerte):
     derniere = etat.derniere_alerte.get(type_alerte)
     if derniere is None or datetime.now() - derniere > timedelta(hours = 1):
         url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
-        requests.post(url, data = {'chat_id' : CHAT_ID, 'text' : message})
-        etat.derniere_alerte[type_alerte] = datetime.now()
+        try:
+            requests.post(url, data = {'chat_id' : CHAT_ID, 'text' : message}, timeout = 10)
+            etat.derniere_alerte[type_alerte] = datetime.now()
+        except requests.exceptions.RequestException as e:
+            print(f"[ALERTE NON ENVOYEE] : {e}")
 
 
 def alerte_temperature():
