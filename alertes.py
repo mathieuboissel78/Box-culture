@@ -48,4 +48,9 @@ def alerte_capteur(temperature, humidite_air, humidites_sol, niveau):
             envoyer_alerte(f'Capteur du {pot.nom} hors sol', 'hors_sol')
         if pot.est_sec:
             envoyer_alerte(f'{pot.nom} est sec', 'est_sec')
-    
+
+
+def alerte_demarrage():
+    heure = datetime.now().strftime("%H:%M:%S")
+    print(f"Démarrage à {heure}")  
+    envoyer_alerte(f'Démarrage à {heure}', 'demarrage')  

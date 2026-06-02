@@ -15,7 +15,7 @@ from historique import initialiser_historique_db
 from config_db import initialiser_config_db
 from actionneurs.pompes import pompe_off
 from actionneurs.relais import led_off, extracteur_v1_off, extracteur_v2_off
-
+import alertes
 if not config.SIMULATION:
 	import RPi.GPIO as GPIO
 
@@ -68,6 +68,8 @@ thread.daemon = True
 thread.start()
 
 n.notify("READY=1")
+
+alertes.alerte_demarrage()
 
 try:
 	app.run(host='0.0.0.0', port=5000)
