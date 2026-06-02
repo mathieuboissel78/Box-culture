@@ -14,7 +14,7 @@ from routines.led import routine_led
 from historique import initialiser_historique_db
 from config_db import initialiser_config_db
 from actionneurs.pompes import pompe_off
-from actionneurs.relais import led_off, extracteur_v1_off, extracteur_v2_off, #brumisateur_off
+from actionneurs.relais import led_off, extracteur_v1_off, extracteur_v2_off
 
 if not config.SIMULATION:
 	import RPi.GPIO as GPIO
