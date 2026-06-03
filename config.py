@@ -4,8 +4,8 @@ from modeles import Pot, Reservoir
 PIN_DHT22              = 4
 PIN_EXTRACTEUR_V1      = 27
 PIN_EXTRACTEUR_V2      = 17
-PIN_RELAIS_LED         = 22
-PIN_RELAIS_BRUMISATEUR = 26   # Phase 3
+PIN_RELAIS_LED         = 26 # 22 avant relais collé
+# PIN_RELAIS_BRUMISATEUR = 26   # Phase 3
 PIN_HC_SR04_TRIG       = 23
 PIN_HC_SR04_ECHO       = 24
 PIN_POMPE              = 25

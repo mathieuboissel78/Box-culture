@@ -30,8 +30,11 @@ def lire_dht():
         return etat.temperature, etat.humidite_air
     for i in range(3):
         try:
+            print("Lecture température", flush = True)
             temperature = dht.temperature
+            print("Lecture humidité air", flush = True)
             humidite_air = dht.humidity
+            print("Lecture DHT effectuée", flush = True)
             return temperature, humidite_air
         except (RuntimeError, NameError) as e:
             time.sleep(2)

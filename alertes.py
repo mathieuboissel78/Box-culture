@@ -13,8 +13,11 @@ def envoyer_alerte(message, type_alerte):
     derniere = etat.derniere_alerte.get(type_alerte)
     if derniere is None or datetime.now() - derniere > timedelta(hours = 1):
         url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
-        requests.post(url, data = {'chat_id' : CHAT_ID, 'text' : message})
-        etat.derniere_alerte[type_alerte] = datetime.now()
+        try:
+            requests.post(url, data = {'chat_id' : CHAT_ID, 'text' : message}, timeout = 10)
+            etat.derniere_alerte[type_alerte] = datetime.now()
+        except requests.exceptions.RequestException as e:
+            print(f"[ALERTE NON ENVOYEE] : {e}", flush = True)
 
 
 def alerte_temperature():
@@ -45,4 +48,9 @@ def alerte_capteur(temperature, humidite_air, humidites_sol, niveau):
             envoyer_alerte(f'Capteur du {pot.nom} hors sol', 'hors_sol')
         if pot.est_sec:
             envoyer_alerte(f'{pot.nom} est sec', 'est_sec')
-    
+
+
+def alerte_demarrage():
+    heure = datetime.now().strftime("%H:%M:%S")
+    print(f"Démarrage à {heure}")  
+    envoyer_alerte(f'Démarrage à {heure}', 'demarrage')  
