@@ -13,8 +13,8 @@ PIN_PWM_VENTILO_1      = 18   # Phase 3
 PIN_PWM_VENTILO_2      = 13   # Phase 3
 PIN_PWM_VENTILO_HUMID  = 19   # Phase 3
 
-CROISSANCE = True
-FLORAISON = False
+CROISSANCE = False
+FLORAISON = True
 SECHAGE = False
 
 if CROISSANCE:
